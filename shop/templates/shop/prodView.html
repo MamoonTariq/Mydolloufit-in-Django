@@ -1,0 +1,72 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} {{product.product_name}} {% endblock %}
+
+{% block css %}
+<style>
+.productimage img {
+    width: 100%;
+    height: auto;
+}
+.product-buttons{
+    margin-top: 28px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="productimage">
+                    <img src="/media/{{product.image}}" alt="">
+                </div>
+            </div>
+            <div class="col-md-8">
+               <h1>{{product.product_name}}</h1>
+               <p><b>$</b>{{product.price}}</p>
+                {{product.desc}}<br>
+                <strong>out of stock</strong>
+                <div class="product-buttons">
+                    <button id="pro{{i.id}}" class="cart btn btn-primary">Add to Cart</button>
+                    <button id="pro{{i.id}}" class="btn btn-success">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+
+    <script>
+      if(localStorage.getItem('cart') == null){
+        var cart = {};
+      } else { 
+        cart = JSON.parse(localStorage.getItem('cart'));
+        console.log(Object.keys(cart).length);
+        jQuery('#cart-value').html(Object.keys(cart).length);
+      }
+
+      jQuery('.cart').click(function(){
+        var idstr = this.id.toString();
+        //console.log(cart_id);
+        if(cart[idstr] != undefined){
+          cart[idstr] = cart[idstr] + 1;
+        } else {
+          cart[idstr] = 1;
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        jQuery('#cart-value').html(Object.keys(cart).length);
+      });
+    </script>
+    {% endblock %}

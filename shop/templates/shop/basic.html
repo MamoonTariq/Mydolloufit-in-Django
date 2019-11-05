@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %} {% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  {% block css %}{% endblock %}
+ 
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/shop">My Doll Outfit</a>
+        </div>
+        <ul class="nav navbar-nav" style="float: right;">
+          <li><a href="/shop">Home</a></li>
+          <li><a href="/shop/contact">Contact Us</a></li>
+          <li><a data-toggle="modal" data-target="#cart_model">Cart (<span id="cart-value"></span>)</a></li>
+        </ul>
+      </div>
+    </nav>
+{% block body %}{% endblock %}
+
+{% block js%}{% endblock %}
+</body>
+</html>
